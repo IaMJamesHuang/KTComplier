@@ -19,4 +19,6 @@ bool hasPrefix(const std::string &s, const std::string &prefix);
 
 std::string readFileIntoString(const char *fileName);
 
+std::string getOutPutName(const std::string &sourceStr, const std::string &modelName);
+
 #endif /* StringHelper_hpp */

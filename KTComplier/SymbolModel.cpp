@@ -35,11 +35,11 @@ SymbolModel & SymbolModel::operator=(const SymbolModel &symbol) {
     return *this;
 }
 
-std::string SymbolModel::getFileName() {
+std::string SymbolModel::getFileName() const{
     return fileName;
 }
 
-uint64_t SymbolModel::getSize() {
+uint64_t SymbolModel::getSize() const{
     return size;
 }
 

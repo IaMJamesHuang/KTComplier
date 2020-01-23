@@ -81,9 +81,29 @@ std::map<std::string, SymbolModel> symbolMapForLinkMapContent(std::string &linkM
 }
 
 void showLinkMap(std::map<std::string, SymbolModel> map) {
-    std::map<std::string, SymbolModel>::iterator iter;
-    for (iter = map.begin(); iter != map.end(); iter++) {
-        SymbolModel model = iter->second;
-        std::cout << "fileName: " << model.getFileName() << "\tsize: " << model.getSize() << std::endl;
+    // /会被裁减掉
+    showLinkMap(map, "/");
+}
+
+void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName) {
+    long pos = modelName.find(".a");
+    if (pos == modelName.npos && modelName != "/") {
+        modelName = modelName + ".a";
     }
+    unsigned long totalSize = 0;
+    std::vector<std::pair<std::string, SymbolModel>> symbolModelList(map.begin(), map.end());
+    sort(symbolModelList.begin(), symbolModelList.end(), symbolSortFunction);
+    for (std::pair<std::string, SymbolModel> sPair : symbolModelList) {
+        SymbolModel model = sPair.second;
+        if (model.getFileName().find(modelName) != modelName.npos) {
+            totalSize += model.getSize();
+            std::string outputFileName = getOutPutName(model.getFileName(), modelName);
+            std::cout << "fileName: " << outputFileName << "\tsize: " << (float)model.getSize() / 1024 << "KB" << std::endl;
+        }
+    }
+    std::cout << "Total Size: " << (float)totalSize / 1024 << "KB\n";
+}
+
+bool symbolSortFunction(const std::pair<std::string, SymbolModel> &sym1, const std::pair<std::string, SymbolModel> &sym2) {
+    return sym1.second.getSize() > sym2.second.getSize();
 }

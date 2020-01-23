@@ -45,3 +45,13 @@ std::string readFileIntoString(const char *fileName) {
     //返回与流对象buf关联的字符串
     return buf.str();
 }
+
+std::string getOutPutName(const std::string &sourceStr, const std::string &modelName) {
+    std::vector<std::string> stringVector = split(sourceStr, "/");
+    long modelNamePos = stringVector.size() - 2;
+    if (stringVector[modelNamePos] == modelName) {
+        std::string outPutStr = stringVector[modelNamePos] + "/" + stringVector[stringVector.size() - 1];
+        return outPutStr;
+    }
+    return sourceStr;
+}

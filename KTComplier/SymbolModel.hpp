@@ -25,8 +25,8 @@ public:
     ~ SymbolModel();
     SymbolModel & operator=(const SymbolModel &symbol);
     
-    std::string getFileName();
-    uint64_t getSize();
+    std::string getFileName() const;
+    uint64_t getSize() const;
     
     void setFileName(std::string p_file_name);
     void setSize(uint64_t p_size);

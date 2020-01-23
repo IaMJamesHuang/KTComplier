@@ -13,9 +13,15 @@
 
 int main(int argc, const char * argv[]) {
     std::string fileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-LinkMap-arm64.txt";
+    std::string modelName = "libTTShortVideoLiteBusiness.a";
+//    std::string fileName = "/Users/huangjiahao/Desktop/KTDemo-LinkMap.txt";
+    std::cout << "start analysis linkmap. path: " << fileName << std::endl;
     std::string content = readFileIntoString(fileName.c_str());
     if (checkLinkMapContent(content)) {
         std::map<std::string, SymbolModel> map = symbolMapForLinkMapContent(content);
-        showLinkMap(map);
+        showLinkMap(map, modelName);
+        std::cout << "done\n";
+    } else {
+        std::cout << "linkmap file has wrong format\n";
     }
 }
