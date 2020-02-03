@@ -11,6 +11,7 @@
 		4C3E3F3223D7F123006F20C0 /* SymbolModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E3F3023D7F123006F20C0 /* SymbolModel.cpp */; };
 		4C3E3F3523D7F5A6006F20C0 /* LinkMapAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E3F3323D7F5A6006F20C0 /* LinkMapAnalysis.cpp */; };
 		4C3E3F3823D82618006F20C0 /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E3F3623D82618006F20C0 /* StringHelper.cpp */; };
+		4C49079A23D94DA5000E5FB3 /* STLHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C49079823D94DA4000E5FB3 /* STLHelper.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		4C3E3F3423D7F5A6006F20C0 /* LinkMapAnalysis.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkMapAnalysis.hpp; sourceTree = "<group>"; };
 		4C3E3F3623D82618006F20C0 /* StringHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StringHelper.cpp; sourceTree = "<group>"; };
 		4C3E3F3723D82618006F20C0 /* StringHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringHelper.hpp; sourceTree = "<group>"; };
+		4C49079823D94DA4000E5FB3 /* STLHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = STLHelper.cpp; sourceTree = "<group>"; };
+		4C49079923D94DA5000E5FB3 /* STLHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STLHelper.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 				4C3E3F3423D7F5A6006F20C0 /* LinkMapAnalysis.hpp */,
 				4C3E3F3623D82618006F20C0 /* StringHelper.cpp */,
 				4C3E3F3723D82618006F20C0 /* StringHelper.hpp */,
+				4C49079823D94DA4000E5FB3 /* STLHelper.cpp */,
+				4C49079923D94DA5000E5FB3 /* STLHelper.hpp */,
 			);
 			path = KTComplier;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				4C3E3F3823D82618006F20C0 /* StringHelper.cpp in Sources */,
 				4C3E3F3523D7F5A6006F20C0 /* LinkMapAnalysis.cpp in Sources */,
 				4C3E3F3223D7F123006F20C0 /* SymbolModel.cpp in Sources */,
+				4C49079A23D94DA5000E5FB3 /* STLHelper.cpp in Sources */,
 				4C3E3CB423D7602F006F20C0 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

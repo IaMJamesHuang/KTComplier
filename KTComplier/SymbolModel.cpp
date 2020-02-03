@@ -13,7 +13,7 @@ SymbolModel::SymbolModel() {
     size = 0;
 }
 
-SymbolModel::SymbolModel(std::string p_file_name, uint64_t p_size)  {
+SymbolModel::SymbolModel(std::string p_file_name, int64_t p_size)  {
     fileName = p_file_name;
     size = p_size;
 }
@@ -39,11 +39,11 @@ std::string SymbolModel::getFileName() const{
     return fileName;
 }
 
-uint64_t SymbolModel::getSize() const{
+int64_t SymbolModel::getSize() const{
     return size;
 }
 
-void SymbolModel::setSize(uint64_t p_size) {
+void SymbolModel::setSize(int64_t p_size) {
     size = p_size;
 }
 

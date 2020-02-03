@@ -16,20 +16,20 @@
 class SymbolModel {
 private:
     std::string fileName;  //.o文件名称
-    uint64_t size; //大小
+    int64_t size; //大小
     
 public:
-    SymbolModel(std::string p_file_name, uint64_t p_size);
+    SymbolModel(std::string p_file_name, int64_t p_size);
     SymbolModel();
     SymbolModel(const SymbolModel &symbol);
     ~ SymbolModel();
     SymbolModel & operator=(const SymbolModel &symbol);
     
     std::string getFileName() const;
-    uint64_t getSize() const;
+    int64_t getSize() const;
     
     void setFileName(std::string p_file_name);
-    void setSize(uint64_t p_size);
+    void setSize(int64_t p_size);
     
 };
 

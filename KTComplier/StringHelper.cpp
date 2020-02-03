@@ -37,21 +37,29 @@ bool hasPrefix(const std::string &s, const std::string &prefix) {
 
 std::string readFileIntoString(const char *fileName) {
     std::ifstream ifile(fileName);
-    //将文件读入到ostringstream对象buf中
     std::ostringstream buf;
     char ch;
-    while(buf&&ifile.get(ch))
-    buf.put(ch);
-    //返回与流对象buf关联的字符串
+    while( buf && ifile.get(ch) ) {
+        buf.put(ch);
+    }
     return buf.str();
 }
 
 std::string getOutPutName(const std::string &sourceStr, const std::string &modelName) {
     std::vector<std::string> stringVector = split(sourceStr, "/");
     long modelNamePos = stringVector.size() - 2;
-    if (stringVector[modelNamePos] == modelName) {
+    if (modelNamePos > 0 && stringVector[modelNamePos] == modelName) {
         std::string outPutStr = stringVector[modelNamePos] + "/" + stringVector[stringVector.size() - 1];
         return outPutStr;
     }
     return sourceStr;
+}
+
+std::string getPureName(const std::string &sourceStr) {
+    std::vector<std::string> stringVector = split(sourceStr, "/");
+    std::string temp = stringVector[stringVector.size() - 1];
+    std::vector<std::string> tempvector = split(temp, "(");
+    std::string result = tempvector[tempvector.size() - 1];
+    result = result.substr(0, result.size() - 1);
+    return result;
 }

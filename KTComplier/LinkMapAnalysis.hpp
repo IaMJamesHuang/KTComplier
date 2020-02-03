@@ -23,6 +23,14 @@ void showLinkMap(std::map<std::string, SymbolModel> map);
 
 void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName);
 
+void showComLinkMap(std::map<std::string, SymbolModel> baseLinkMap, std::map<std::string, SymbolModel> comLinkMap);
+
+void showComLinkMap(std::vector<SymbolModel> baseLinkMap, std::vector<SymbolModel> comLinkMap);
+
+void showLinkMapVector(std::vector<SymbolModel> vector);
+
 bool symbolSortFunction(const std::pair<std::string, SymbolModel> &sym1, const std::pair<std::string, SymbolModel> &sym2);
+
+bool symbolVectorSortFunction(const SymbolModel &sym1, const SymbolModel &sym2);
 
 #endif /* LinkMapAnalysis_hpp */

@@ -9,6 +9,7 @@
 #include "LinkMapAnalysis.hpp"
 #include "StringHelper.hpp"
 #include <vector>
+#include "STLHelper.hpp"
 
 static const std::string kOBJECT_FILE = "# Object files:";
 static const std::string kSECTIONS = "# Sections:";
@@ -86,10 +87,6 @@ void showLinkMap(std::map<std::string, SymbolModel> map) {
 }
 
 void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName) {
-    long pos = modelName.find(".a");
-    if (pos == modelName.npos && modelName != "/") {
-        modelName = modelName + ".a";
-    }
     unsigned long totalSize = 0;
     std::vector<std::pair<std::string, SymbolModel>> symbolModelList(map.begin(), map.end());
     sort(symbolModelList.begin(), symbolModelList.end(), symbolSortFunction);
@@ -104,6 +101,50 @@ void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName) 
     std::cout << "Total Size: " << (float)totalSize / 1024 << "KB\n";
 }
 
+void showComLinkMap(std::map<std::string, SymbolModel> baseLinkMap,
+                    std::map<std::string, SymbolModel> comLinkMap) {
+    std::vector<SymbolModel> baseLinkMapVector = mapToVector(baseLinkMap);
+    std::vector<SymbolModel> comLinkMapVector = mapToVector(comLinkMap);
+    showComLinkMap(baseLinkMapVector, comLinkMapVector);
+}
+
+void showComLinkMap(std::vector<SymbolModel> baseLinkMap, std::vector<SymbolModel> comLinkMap) {
+    std::vector<std::pair<SymbolModel, SymbolModel>> intersectionVector = intersection(baseLinkMap, comLinkMap);
+    //base没有的，就是减少了
+    std::vector<SymbolModel> deleteVector = difference(intersectionVector, baseLinkMap);
+    sort(deleteVector.begin(), deleteVector.end(), symbolVectorSortFunction);
+    
+    //com没有的，就是新增了
+    std::vector<SymbolModel> newVector = difference(intersectionVector, comLinkMap);
+    sort(newVector.begin(), newVector.end(), symbolVectorSortFunction);
+
+    //转成vector便于排序
+    std::vector<SymbolModel> interVector = pairVectorToModelVector(intersectionVector);
+    sort(interVector.begin(), interVector.end(), symbolVectorSortFunction);
+
+    std::cout << "原有文件增量：\n";
+    showLinkMapVector(interVector);
+    
+    std::cout << "新增文件增量：\n";
+    showLinkMapVector(newVector);
+
+    std::cout << "删除文件减量:\n";
+    showLinkMapVector(deleteVector);
+}
+
+void showLinkMapVector(std::vector<SymbolModel> vector) {
+    unsigned long totalSize = 0;
+    for (auto item : vector) {
+        totalSize += item.getSize();
+        std::string outputFileName = getOutPutName(item.getFileName(), "/");
+        std::cout << "fileName: " << outputFileName << "\tsize: " << (float)item.getSize() / 1024 << "KB" << std::endl;
+    }
+}
+
 bool symbolSortFunction(const std::pair<std::string, SymbolModel> &sym1, const std::pair<std::string, SymbolModel> &sym2) {
     return sym1.second.getSize() > sym2.second.getSize();
+}
+
+bool symbolVectorSortFunction(const SymbolModel &sym1, const SymbolModel &sym2) {
+    return sym1.getSize() > sym2.getSize();
 }

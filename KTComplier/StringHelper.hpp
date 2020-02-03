@@ -21,4 +21,6 @@ std::string readFileIntoString(const char *fileName);
 
 std::string getOutPutName(const std::string &sourceStr, const std::string &modelName);
 
+std::string getPureName(const std::string &sourceStr);
+
 #endif /* StringHelper_hpp */
