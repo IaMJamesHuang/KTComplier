@@ -81,12 +81,12 @@ std::map<std::string, SymbolModel> symbolMapForLinkMapContent(std::string &linkM
     return symboMap;
 }
 
-void showLinkMap(std::map<std::string, SymbolModel> map) {
+void showLinkMap(std::map<std::string, SymbolModel> map, FileWriter &fileWirter) {
     // /会被裁减掉
-    showLinkMap(map, "/");
+    showLinkMap(map, "/", fileWirter);
 }
 
-void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName) {
+void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName, FileWriter &fileWirter) {
     unsigned long totalSize = 0;
     std::vector<std::pair<std::string, SymbolModel>> symbolModelList(map.begin(), map.end());
     sort(symbolModelList.begin(), symbolModelList.end(), symbolSortFunction);
@@ -96,19 +96,21 @@ void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName) 
             totalSize += model.getSize();
             std::string outputFileName = getOutPutName(model.getFileName(), modelName);
             std::cout << "fileName: " << outputFileName << "\tsize: " << (float)model.getSize() / 1024 << "KB" << std::endl;
+            fileWirter.getFileStream() << "fileName: " << outputFileName << "\tsize: " << (float)model.getSize() / 1024 << "KB" << std::endl;
         }
     }
     std::cout << "Total Size: " << (float)totalSize / 1024 << "KB\n";
 }
 
 void showComLinkMap(std::map<std::string, SymbolModel> baseLinkMap,
-                    std::map<std::string, SymbolModel> comLinkMap) {
+                    std::map<std::string, SymbolModel> comLinkMap,
+                    FileWriter &fileWriter) {
     std::vector<SymbolModel> baseLinkMapVector = mapToVector(baseLinkMap);
     std::vector<SymbolModel> comLinkMapVector = mapToVector(comLinkMap);
-    showComLinkMap(baseLinkMapVector, comLinkMapVector);
+    showComLinkMap(baseLinkMapVector, comLinkMapVector, fileWriter);
 }
 
-void showComLinkMap(std::vector<SymbolModel> baseLinkMap, std::vector<SymbolModel> comLinkMap) {
+void showComLinkMap(std::vector<SymbolModel> baseLinkMap, std::vector<SymbolModel> comLinkMap, FileWriter &fileWriter) {
     std::vector<std::pair<SymbolModel, SymbolModel>> intersectionVector = intersection(baseLinkMap, comLinkMap);
     //base没有的，就是减少了
     std::vector<SymbolModel> deleteVector = difference(intersectionVector, baseLinkMap);
@@ -123,21 +125,25 @@ void showComLinkMap(std::vector<SymbolModel> baseLinkMap, std::vector<SymbolMode
     sort(interVector.begin(), interVector.end(), symbolVectorSortFunction);
 
     std::cout << "原有文件增量：\n";
-    showLinkMapVector(interVector);
+    fileWriter.getFileStream() << "原有文件增量：\n";
+    showLinkMapVector(interVector, fileWriter);
     
     std::cout << "新增文件增量：\n";
-    showLinkMapVector(newVector);
+    fileWriter.getFileStream() << "新增文件增量：\n";
+    showLinkMapVector(newVector, fileWriter);
 
     std::cout << "删除文件减量:\n";
-    showLinkMapVector(deleteVector);
+    fileWriter.getFileStream() << "删除文件减量:\n";
+    showLinkMapVector(deleteVector, fileWriter);
 }
 
-void showLinkMapVector(std::vector<SymbolModel> vector) {
+void showLinkMapVector(std::vector<SymbolModel> vector, FileWriter &fileWriter) {
     unsigned long totalSize = 0;
     for (auto item : vector) {
         totalSize += item.getSize();
         std::string outputFileName = getOutPutName(item.getFileName(), "/");
         std::cout << "fileName: " << outputFileName << "\tsize: " << (float)item.getSize() / 1024 << "KB" << std::endl;
+        fileWriter.getFileStream() << "fileName: " << outputFileName << "\tsize: " << (float)item.getSize() / 1024 << "KB" << std::endl;
     }
 }
 
