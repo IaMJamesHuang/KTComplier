@@ -26,4 +26,8 @@ std::vector<SymbolModel> pairVectorToModelVector(const std::vector<std::pair<Sym
 
 std::vector<SymbolModel> filterVector(std::vector<SymbolModel> &vector, std::string &modelName);
 
+std::vector<SymbolModel> filterVector(std::vector<SymbolModel> &vector, std::vector<std::string> modelList);
+
+bool isModelNameInModelList(SymbolModel &model, std::vector<std::string> &modelList);
+
 #endif /* STLHelper_hpp */

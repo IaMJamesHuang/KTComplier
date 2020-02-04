@@ -145,6 +145,8 @@ void showLinkMapVector(std::vector<SymbolModel> vector, FileWriter &fileWriter) 
         std::cout << "fileName: " << outputFileName << "\tsize: " << (float)item.getSize() / 1024 << "KB" << std::endl;
         fileWriter.getFileStream() << "fileName: " << outputFileName << "\tsize: " << (float)item.getSize() / 1024 << "KB" << std::endl;
     }
+    std::cout << "total size: " << totalSize << std::endl;
+    fileWriter.getFileStream() << "total size: " << (float)totalSize / 1024 << "KB" << std::endl;
 }
 
 bool symbolSortFunction(const std::pair<std::string, SymbolModel> &sym1, const std::pair<std::string, SymbolModel> &sym2) {

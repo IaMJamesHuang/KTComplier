@@ -80,4 +80,24 @@ std::vector<SymbolModel> filterVector(std::vector<SymbolModel> &vector, std::str
     return result;
 }
 
+std::vector<SymbolModel> filterVector(std::vector<SymbolModel> &vector, std::vector<std::string> modelList) {
+    std::vector<SymbolModel> result;
+    for (auto item : vector) {
+        if (isModelNameInModelList(item, modelList)) {
+            SymbolModel symbol;
+            symbol.setFileName(getPureName(item.getFileName()));
+            symbol.setSize(item.getSize());
+            result.push_back(symbol);
+        }
+    }
+    return result;
+}
 
+bool isModelNameInModelList(SymbolModel &model, std::vector<std::string> &modelList) {
+    for (auto item : modelList) {
+        if (model.getFileName().find(item) != item.npos) {
+            return true;
+        }
+    }
+    return false;
+}

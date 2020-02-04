@@ -18,8 +18,8 @@ void analysisSingleLinkMap();
 void compareLinkMaps();
 
 int main(int argc, const char * argv[]) {
-    analysisSingleLinkMap();
-//    compareLinkMaps();
+//    analysisSingleLinkMap();
+    compareLinkMaps();
     return 0;
 }
 
@@ -51,6 +51,10 @@ void compareLinkMaps() {
     std::string comLinkMapFileName = "/Users/huangjiahao/Downloads/NewsLiteInHouse-LinkMap-arm64.txt";
     std::string baseModelName = "TTShortVideoLiteBusiness";
     std::string comModelName = "TTShortVideoBusinessLite";
+    
+    std::vector<std::string> baseModelList = {"TTShortVideoLiteBusiness", "TTShortVideoService"};
+    std::vector<std::string> comModelList = {"TTShortVideoBusinessLite", "TTShortVideoServiceLite"};
+    
     std::string outputfileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-CompareReslut.txt";
     FileWriter fileWriter(outputfileName);
     fileWriter.start();
@@ -66,8 +70,10 @@ void compareLinkMaps() {
         std::map<std::string, SymbolModel> comMap = symbolMapForLinkMapContent(comContent);
         std::vector<SymbolModel> tempBaseVector = mapToVector(baseMap);
         std::vector<SymbolModel> tempComVector = mapToVector(comMap);
-        std::vector<SymbolModel> baseVector = filterVector(tempBaseVector, baseModelName);
-        std::vector<SymbolModel> comVector = filterVector(tempComVector, comModelName);
+//        std::vector<SymbolModel> baseVector = filterVector(tempBaseVector, baseModelName);
+//        std::vector<SymbolModel> comVector = filterVector(tempComVector, comModelName);
+        std::vector<SymbolModel> baseVector = filterVector(tempBaseVector, baseModelList);
+        std::vector<SymbolModel> comVector = filterVector(tempComVector, comModelList);
         showComLinkMap(baseVector, comVector, fileWriter);
     } else {
         std::cout << "linkmap file has wrong format\n";
