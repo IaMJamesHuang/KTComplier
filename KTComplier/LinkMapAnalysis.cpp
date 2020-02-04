@@ -100,6 +100,7 @@ void showLinkMap(std::map<std::string, SymbolModel> map, std::string modelName, 
         }
     }
     std::cout << "Total Size: " << (float)totalSize / 1024 << "KB\n";
+    fileWirter.getFileStream() << "Total Size: " << (float)totalSize / 1024 << "KB\n";
 }
 
 void showComLinkMap(std::map<std::string, SymbolModel> baseLinkMap,

@@ -19,9 +19,9 @@ void compareLinkMaps();
 
 int main(int argc, const char * argv[]) {
     // 查看单个文件的文件大小情况
-//    analysisSingleLinkMap();
+    analysisSingleLinkMap();
     //比较两个linkmap的文件增量
-    compareLinkMaps();
+//    compareLinkMaps();
     return 0;
 }
 
@@ -51,12 +51,13 @@ void analysisSingleLinkMap() {
         std::cout << "linkmap file has wrong format\n";
         fileWriter.getFileStream() << "linkmap file has wrong format\n";
     }
+    fileWriter.end();
 }
 
 void compareLinkMaps() {
     //基线linkmap文件路径
     std::string baseLinkMapfileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-LinkMap-arm64.txt";
-    //对比linkmap文件撸
+    //对比linkmap文件路径
     std::string comLinkMapFileName = "/Users/huangjiahao/Downloads/NewsLiteInHouse-LinkMap-arm64.txt";
 //    std::string baseModelName = "TTShortVideoLiteBusiness";
 //    std::string comModelName = "TTShortVideoBusinessLite";
@@ -77,7 +78,7 @@ void compareLinkMaps() {
     std::string baseContent = readFileIntoString(baseLinkMapfileName.c_str());
     std::string comContent = readFileIntoString(comLinkMapFileName.c_str());
     if (checkLinkMapContent(baseContent) && checkLinkMapContent(comContent)) {
-        //面向过程编程就是垃圾 2020.02.03
+        //todo 多线程解析
         std::map<std::string, SymbolModel> baseMap = symbolMapForLinkMapContent(baseContent);
         std::map<std::string, SymbolModel> comMap = symbolMapForLinkMapContent(comContent);
         std::vector<SymbolModel> tempBaseVector = mapToVector(baseMap);
