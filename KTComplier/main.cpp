@@ -18,14 +18,19 @@ void analysisSingleLinkMap();
 void compareLinkMaps();
 
 int main(int argc, const char * argv[]) {
+    // 查看单个文件的文件大小情况
 //    analysisSingleLinkMap();
+    //比较两个linkmap的文件增量
     compareLinkMaps();
     return 0;
 }
 
 void analysisSingleLinkMap() {
+    //linkmap 文件路径
     std::string fileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-LinkMap-arm64.txt";
+    //输出文件路径
     std::string outputfileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-LinkMapReslut.txt";
+    //关注的模块名称
     std::string modelName = "TTShortVideoLiteBusiness";
     FileWriter fileWriter(outputfileName);
     fileWriter.start();
@@ -37,6 +42,8 @@ void analysisSingleLinkMap() {
     std::string content = readFileIntoString(fileName.c_str());
     if (checkLinkMapContent(content)) {
         std::map<std::string, SymbolModel> map = symbolMapForLinkMapContent(content);
+        //调用showLinkMap(map, fileWriter)表示不关注模块信息
+        //showLinkMap(map, fileWriter);
         showLinkMap(map, modelName, fileWriter);
         std::cout << "done\n";
         fileWriter.getFileStream() << "done\n";
@@ -47,14 +54,19 @@ void analysisSingleLinkMap() {
 }
 
 void compareLinkMaps() {
+    //基线linkmap文件路径
     std::string baseLinkMapfileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-LinkMap-arm64.txt";
+    //对比linkmap文件撸
     std::string comLinkMapFileName = "/Users/huangjiahao/Downloads/NewsLiteInHouse-LinkMap-arm64.txt";
-    std::string baseModelName = "TTShortVideoLiteBusiness";
-    std::string comModelName = "TTShortVideoBusinessLite";
+//    std::string baseModelName = "TTShortVideoLiteBusiness";
+//    std::string comModelName = "TTShortVideoBusinessLite";
     
+    //关注的基线模块列表，主要是为了解决模块名称发生变更的情况，所以基线包和对比包模块名称不一致
     std::vector<std::string> baseModelList = {"TTShortVideoLiteBusiness", "TTShortVideoService"};
+    //关注的对比模块列表，主要是为了解决模块名称发生变更的情况，所以基线包和对比包模块名称不一致
     std::vector<std::string> comModelList = {"TTShortVideoBusinessLite", "TTShortVideoServiceLite"};
     
+    //输出文件路径
     std::string outputfileName = "/Users/huangjiahao/Desktop/NewsLiteInHouse-CompareReslut.txt";
     FileWriter fileWriter(outputfileName);
     fileWriter.start();
