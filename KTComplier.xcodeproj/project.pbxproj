@@ -13,6 +13,8 @@
 		4C3E3F3523D7F5A6006F20C0 /* LinkMapAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E3F3323D7F5A6006F20C0 /* LinkMapAnalysis.cpp */; };
 		4C3E3F3823D82618006F20C0 /* StringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E3F3623D82618006F20C0 /* StringHelper.cpp */; };
 		4C49079A23D94DA5000E5FB3 /* STLHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C49079823D94DA4000E5FB3 /* STLHelper.cpp */; };
+		4C5DB44E23ED4C6F001DC038 /* LexicalAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C5DB44C23ED4C6F001DC038 /* LexicalAnalysis.cpp */; };
+		4C5DB45423F00FC6001DC038 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C5DB45223F00FC6001DC038 /* Token.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +42,10 @@
 		4C3E3F3723D82618006F20C0 /* StringHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StringHelper.hpp; sourceTree = "<group>"; };
 		4C49079823D94DA4000E5FB3 /* STLHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = STLHelper.cpp; sourceTree = "<group>"; };
 		4C49079923D94DA5000E5FB3 /* STLHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = STLHelper.hpp; sourceTree = "<group>"; };
+		4C5DB44C23ED4C6F001DC038 /* LexicalAnalysis.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LexicalAnalysis.cpp; sourceTree = "<group>"; };
+		4C5DB44D23ED4C6F001DC038 /* LexicalAnalysis.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LexicalAnalysis.hpp; sourceTree = "<group>"; };
+		4C5DB45223F00FC6001DC038 /* Token.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Token.cpp; sourceTree = "<group>"; };
+		4C5DB45323F00FC6001DC038 /* Token.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Token.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,7 @@
 		4C3E3CB223D7602F006F20C0 /* KTComplier */ = {
 			isa = PBXGroup;
 			children = (
+				4C5DB44B23ED4C34001DC038 /* Complier */,
 				4C3E3CB323D7602F006F20C0 /* main.cpp */,
 				4C3E3F3023D7F123006F20C0 /* SymbolModel.cpp */,
 				4C3E3F3123D7F123006F20C0 /* SymbolModel.hpp */,
@@ -85,6 +92,17 @@
 				4C1AD70B23E816A900B0CE45 /* FileWriter.hpp */,
 			);
 			path = KTComplier;
+			sourceTree = "<group>";
+		};
+		4C5DB44B23ED4C34001DC038 /* Complier */ = {
+			isa = PBXGroup;
+			children = (
+				4C5DB44C23ED4C6F001DC038 /* LexicalAnalysis.cpp */,
+				4C5DB44D23ED4C6F001DC038 /* LexicalAnalysis.hpp */,
+				4C5DB45223F00FC6001DC038 /* Token.cpp */,
+				4C5DB45323F00FC6001DC038 /* Token.hpp */,
+			);
+			path = Complier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,8 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C5DB44E23ED4C6F001DC038 /* LexicalAnalysis.cpp in Sources */,
 				4C3E3F3823D82618006F20C0 /* StringHelper.cpp in Sources */,
 				4C3E3F3523D7F5A6006F20C0 /* LinkMapAnalysis.cpp in Sources */,
+				4C5DB45423F00FC6001DC038 /* Token.cpp in Sources */,
 				4C3E3F3223D7F123006F20C0 /* SymbolModel.cpp in Sources */,
 				4C49079A23D94DA5000E5FB3 /* STLHelper.cpp in Sources */,
 				4C1AD70C23E816A900B0CE45 /* FileWriter.cpp in Sources */,
